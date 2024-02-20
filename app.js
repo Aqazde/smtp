@@ -2,6 +2,9 @@
 const nodemailer = require('nodemailer');
 const readline = require('readline');
 require('dotenv').config(); // Load environment variables
+
+const email = process.env.EMAIL_USER;
+const password = process.env.EMAIL_PASS;
 // Function to send email
 function sendEmail(to, subject, body) {
     // Creating a Nodemailer transporter using Mail.ru SMTP details
@@ -10,14 +13,14 @@ function sendEmail(to, subject, body) {
         port: 465,
         secure: true, // Use SSL/TLS encryption
         auth: {
-            user: '', // Mail.ru username
-            pass: '' // Mail.ru password or app-specific password
+            user: email, // Mail.ru username
+            pass: password // Mail.ru password or app-specific password
         }
     });
 
     // Email message options
     let mailOptions = {
-        from: '', // Sender address (must be your Mail.ru email address)
+        from: email, // Sender address (must be your Mail.ru email address)
         to: to,
         subject: subject,
         text: body
